@@ -18,12 +18,19 @@ kramdown:
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
+  auto_ids: true
 
 # Default layout
 defaults:
   -
     scope:
       path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "*.md"
     values:
       layout: "default"
 
@@ -31,6 +38,11 @@ defaults:
 relative_links:
   enabled: true
   collections: true
+
+# Include all markdown files
+include:
+  - "*.md"
+  - "**/*.md"
 
 # Exclude files from processing
 exclude:
