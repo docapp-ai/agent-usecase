@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Packing Checklist - Seattle Trip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #3498db;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .checklist-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist-item:hover {
+            background-color: #f8f9fa;
+        }
+        .checklist-item label {
+            cursor: pointer;
+            display: block;
+            margin-bottom: 0;
+        }
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .category-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .print-button:hover {
+            background-color: #1a252f;
+            transform: scale(1.05);
+        }
+        @media print {
+            .print-button {
+                display: none;
+            }
+            .checklist-item {
+                break-inside: avoid;
+            }
+            .category-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
+            body {
+                background-color: white;
+            }
+            .header {
+                background-color: white !important;
+                color: #333 !important;
+                padding: 10px 0;
+            }
+            .section-title {
+                background-color: #f8f9fa !important;
+                color: #333 !important;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>Family Packing Checklist</h1>
+            <p>Seattle Trip - August 2025</p>
+            <p><i class="fas fa-users"></i> Family with 2 Kids (6-9 years old)</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-passport"></i> Documents & Essentials</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Passports (check validity)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Visa documents</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Flight tickets/confirmations</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hotel reservations</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Travel insurance documents</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Driver's license/ID cards</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Credit/debit cards</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Cash (USD)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Emergency contacts list</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Birth certificates for children (copies)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-tshirt"></i> Clothing - Adults</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> T-shirts/short-sleeve shirts (7-8)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Long-sleeve shirts/light sweaters (2-3)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Pants/jeans (3-4)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Shorts (3-4)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Light jacket/windbreaker</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sleepwear</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Socks (7+ pairs)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Underwear (7+ pairs)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Swimwear</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Comfortable walking shoes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sandals or flip-flops</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hat for sun protection</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sunglasses</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> One nice outfit for dining out</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-child"></i> Clothing - Children</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> T-shirts (7-8 per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Long-sleeve shirts (2-3 per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Pants/jeans (3-4 per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Shorts (3-4 per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Light jacket/windbreaker</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sleepwear (2-3 sets per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Socks (7+ pairs per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Underwear (7+ pairs per child)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Swimwear</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Comfortable walking shoes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sandals or water shoes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hats for sun protection</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sunglasses</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> One nice outfit per child</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-toilet"></i> Toiletries & Personal Care</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Toothbrushes & toothpaste</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Shampoo & conditioner</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Shower gel/soap</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Deodorant</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Razor & shaving cream</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hair brush/comb</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hair ties/clips</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Facial cleanser & moisturizer</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Sunscreen (SPF 30+)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Lip balm with SPF</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hand sanitizer</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Wet wipes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Tissues</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Contact lenses & solution (if needed)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Glasses & case (if needed)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Feminine hygiene products (if needed)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Makeup & makeup remover (if used)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-first-aid"></i> Health & Medical</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Prescription medications</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Pain relievers (adult and children's)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Band-aids & first aid kit</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Antihistamines/allergy medication</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Motion sickness medication</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Antacids/digestive aids</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Insect repellent</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Hand cream for dry skin</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Bandages/moleskin for blisters</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Thermometer</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Health insurance cards/information</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-plug"></i> Electronics & Entertainment</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Smartphones & chargers</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Tablets/e-readers & chargers</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Camera & charger</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Power bank/portable charger</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Travel adapter (if needed)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Headphones</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Books/e-books</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Small games/activities for kids</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Coloring books & crayons</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Children's comfort items/toys</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-suitcase-rolling"></i> Miscellaneous</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Day backpack/bag for excursions</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Reusable water bottles</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Travel pillow & eye mask</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Laundry bag for dirty clothes</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Ziploc bags (various sizes)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Travel-size laundry detergent</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Umbrella or light rain jacket</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Reusable shopping bag</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Snacks for flight & day trips</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Seattle guidebook/maps</label>
+                        </div>
+                        <div class="checklist-item">
+                            <label><input type="checkbox"> Printed copies of trip itinerary</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-5">
+            <div class="col-12">
+                <div class="category-container">
+                    <h3 class="section-title"><i class="fas fa-exclamation-triangle"></i> Before Departure Checklist</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checklist-items">
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Notify bank of travel plans</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Set up international roaming/purchase SIM card</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Check airline baggage allowance</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Exchange some currency (USD)</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Download offline maps of Seattle</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="checklist-items">
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Check travel advisories</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Make copies of important documents</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Complete online check-in for flights</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Secure your home</label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label><input type="checkbox"> Check weather forecast before packing</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Save checkbox states to localStorage
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+            // Load saved states
+            checkboxes.forEach(function(checkbox, index) {
+                const savedState = localStorage.getItem('checkbox_' + index);
+                if (savedState === 'true') {
+                    checkbox.checked = true;
+                }
+                
+                // Add event listener to save state on change
+                checkbox.addEventListener('change', function() {
+                    localStorage.setItem('checkbox_' + index, this.checked);
+                });
+            });
+            
+            // Add reset button functionality
+            const resetButton = document.createElement('button');
+            resetButton.innerHTML = '<i class="fas fa-redo-alt"></i>';
+            resetButton.className = 'print-button';
+            resetButton.style.bottom = '100px';
+            resetButton.title = 'Reset All Checkboxes';
+            resetButton.onclick = function() {
+                if (confirm('Are you sure you want to reset all checkboxes?')) {
+                    checkboxes.forEach(function(checkbox, index) {
+                        checkbox.checked = false;
+                        localStorage.setItem('checkbox_' + index, false);
+                    });
+                }
+            };
+            document.body.appendChild(resetButton);
+        });
+    </script>
+</body>
+</html>
