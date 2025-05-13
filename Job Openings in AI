@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-Related Software Engineering Job Openings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .company-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 12px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #2172a7;
+        }
+        .meta {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            height: 60px;
+        }
+        .date {
+            text-align: right;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LLM-Related Software Engineering Job Openings</h1>
+    <p class="date">Updated: May 8, 2025</p>
+
+    <div class="company-section">
+        <h2>OpenAI</h2>
+        <ul>
+            <li><a href="https://jobs.ashbyhq.com/openai/b8eae814-b748-4c48-a20b-7097921d5ce4/application" target="_blank">Engineering Manager, Production Inference Research</a></li>
+            <li><a href="https://jobs.ashbyhq.com/openai/240d459b-696d-43eb-8497-fab3e56ecd9b/application" target="_blank">Research Engineer</a></li>
+            <li><a href="https://jobs.ashbyhq.com/openai/5f0c6579-0bfb-4a06-8a43-1dd371499e10/application" target="_blank">Research Scientist</a></li>
+        </ul>
+    </div>
+
+    <div class="company-section">
+        <h2>Anthropic (Claude)</h2>
+        <ul>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4559211008" target="_blank">Engineering Manager, Inference Scalability and Capability</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4612229008" target="_blank">Machine Learning Systems Engineer - Data & Evaluation, Horizons</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4579550008" target="_blank">Machine Learning Systems Engineer, Encodings and Tokenization</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4613492008" target="_blank">Machine Learning Systems Engineer - Infrastructure & Runtime, Horizons</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4578959008" target="_blank">Machine Learning Systems Engineer, Model APIs</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4588825008" target="_blank">Machine Learning Systems Engineer, Model Evaluations</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4577144008" target="_blank">Machine Learning Systems Engineer, RL Engineering</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4017544008" target="_blank">Research Engineer, Agents</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4020305008" target="_blank">Research Engineer, Interpretability</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4613568008" target="_blank">Research Engineer, Machine Learning (Horizons)</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4613592008" target="_blank">Research Engineer, Production Model Post Training</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4629430008" target="_blank">Research Engineer / Research Scientist, Multimodal</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4613599008" target="_blank">Research Engineer, Reward Models</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4632531008" target="_blank">Research Engineer, Tokens ML Infra</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4593216008" target="_blank">Software Engineer, Inference Scalability and Capability</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4020354008" target="_blank">Software Engineer, ML Performance and Scaling</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4646237008" target="_blank">Staff Software Engineer, AI Reliability Engineering</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4610069008" target="_blank">TPU Kernel Engineer</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4670566008" target="_blank">Applied AI, Finetuning Engineer</a></li>
+            <li><a href="https://job-boards.greenhouse.io/anthropic/jobs/4033986008" target="_blank">Software Engineer, Safeguards</a></li>
+        </ul>
+        <p class="meta">Note: This is a selection of the most relevant positions. Anthropic has many more LLM-related roles on their career page.</p>
+    </div>
+
+    <div class="company-section">
+        <h2>xAI</h2>
+        <ul>
+            <li><a href="https://job-boards.greenhouse.io/xai/jobs/4374125007" target="_blank">AI Engineer & Researcher - Post-training</a></li>
+            <li><a href="https://job-boards.greenhouse.io/xai/jobs/4378344007" target="_blank">AI Engineer & Researcher - Pre-training Scaling, Data, and Eval</a></li>
+            <li><a href="https://job-boards.greenhouse.io/xai/jobs/4378348007" target="_blank">Software Engineer - Data Acquisition / Web Crawling</a></li>
+        </ul>
+    </div>
+
+    <div class="company-section">
+        <h2>Google</h2>
+        <ul>
+            <li><a href="https://careers.google.com/jobs/results/132060275351134918-staff-software-engineer-large-language-model-and-genai?q=large%20language%20model%20software%20engineer" target="_blank">Staff Software Engineer, Large Language Model and GenAI</a></li>
+            <li><a href="https://careers.google.com/jobs/results/129852425216369350-senior-software-engineer-generative-ai-and-llms?q=large%20language%20model%20software%20engineer" target="_blank">Senior Software Engineer, Generative AI and LLMs</a></li>
+            <li><a href="https://careers.google.com/jobs/results/137800177103577798-software-engineer-generative-ai-blackbelt-google-cloud-platform?q=large%20language%20model%20software%20engineer" target="_blank">Software Engineer, Generative AI Blackbelt, Google Cloud Platform</a></li>
+            <li><a href="https://careers.google.com/jobs/results/142636038269870790-staff-software-engineer-app-modernization-with-ai?q=large%20language%20model%20software%20engineer" target="_blank">Staff Software Engineer, App Modernization with AI</a></li>
+            <li><a href="https://careers.google.com/jobs/results/139453057149608646-staff-software-engineer-generative-ai-google-workspace?q=large%20language%20model%20software%20engineer" target="_blank">Staff Software Engineer, Generative AI, Google Workspace</a></li>
+            <li><a href="https://careers.google.com/jobs/results/74131594171818694-software-engineer-lll-generative-ai?q=large%20language%20model%20software%20engineer" target="_blank">Software Engineer lll, Generative AI</a></li>
+            <li><a href="https://careers.google.com/jobs/results/113896568209187526-senior-software-engineer-generative-ai?q=large%20language%20model%20software%20engineer" target="_blank">Senior Software Engineer, Generative AI</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
