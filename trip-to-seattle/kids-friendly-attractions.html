@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seattle Kid-Friendly Attractions Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .header-section {
+            background-color: #3498db;
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background-image: linear-gradient(rgba(52, 152, 219, 0.85), rgba(52, 152, 219, 0.85)), url('https://images.unsplash.com/photo-1502175353174-a7a70e73b362?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+        .attraction-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .attraction-content {
+            padding: 20px;
+        }
+        .attraction-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .attraction-address {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .attraction-description {
+            margin-bottom: 15px;
+        }
+        .attraction-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .attraction-info span {
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        .attraction-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: #e3f2fd;
+            color: #2980b9;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .category-title {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .filters {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .filter-btn {
+            margin-right: 5px;
+            margin-bottom: 10px;
+            background-color: #e3f2fd;
+            color: #2980b9;
+            border: none;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .rating {
+            color: #f1c40f;
+        }
+        .tips-container {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+        }
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section text-center">
+            <h1><i class="fas fa-child"></i> Seattle Kid-Friendly Attractions</h1>
+            <p class="lead">Perfect for children aged 6-9 years old</p>
+        </div>
+
+        <div class="filters">
+            <h5><i class="fas fa-filter"></i> Filter by Type:</h5>
+            <div class="filter-buttons mb-3">
+                <button class="btn filter-btn active" data-filter="all">All</button>
+                <button class="btn filter-btn" data-filter="museum">Museums</button>
+                <button class="btn filter-btn" data-filter="outdoor">Outdoor</button>
+                <button class="btn filter-btn" data-filter="animal">Animal Attractions</button>
+                <button class="btn filter-btn" data-filter="fun">Fun & Entertainment</button>
+                <button class="btn filter-btn" data-filter="science">Science & Learning</button>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-map-marker-alt"></i> Filter by Location:</h5>
+                    <div class="filter-buttons">
+                        <button class="btn filter-btn" data-filter="downtown">Downtown</button>
+                        <button class="btn filter-btn" data-filter="seattle-center">Seattle Center</button>
+                        <button class="btn filter-btn" data-filter="waterfront">Waterfront</button>
+                        <button class="btn filter-btn" data-filter="outside">Outside Downtown</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-cloud-sun-rain"></i> Weather Consideration:</h5>
+                    <div class="filter-buttons">
+                        <button class="btn filter-btn" data-filter="indoor">Indoor (Rainy Day)</button>
+                        <button class="btn filter-btn" data-filter="outdoor">Outdoor (Nice Weather)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-container">
+            <h4><i class="fas fa-lightbulb"></i> Tips for Visiting Seattle with Kids</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li><strong>Plan around energy levels</strong> - Schedule more active attractions in the morning when kids have more energy</li>
+                        <li><strong>Use public transportation</strong> - Kids often enjoy riding buses, light rail, and especially the monorail</li>
+                        <li><strong>Pack snacks and water</strong> - Keep hungry moments at bay with portable snacks</li>
+                        <li><strong>Check for special events</strong> - Many museums have special kids' programming in summer</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li><strong>Take breaks</strong> - Plan downtime between attractions to prevent overstimulation</li>
+                        <li><strong>Be prepared for weather changes</strong> - Even in August, it's good to have light jackets</li>
+                        <li><strong>Get CityPASS</strong> - Consider the Seattle CityPASS for savings on multiple attractions</li>
+                        <li><strong>Ask about kids' activities</strong> - Many attractions have scavenger hunts or special programs for children</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container mb-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43012.51066569386!2d-122.36604186563153!3d47.61821182145863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490102c93e83355%3A0x102565466944d59a!2sSeattle%2C%20WA%2C%20USA!5e0!3m2!1sen!2sus!4v1621884371814!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <h2 class="category-title">Top-Rated Kid-Friendly Attractions</h2>
+        <div class="row attractions-row">
+            <!-- Pacific Science Center -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum science indoor seattle-center">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1566140967404-b8b3932483f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Pacific Science Center</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 200 2nd Ave N, Seattle, WA 98109</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $19.75-$24.75</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.1/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Interactive science center offering hands-on exhibits, a planetarium, butterfly house, and IMAX theater. Perfect for curious kids who like to touch, explore, and experiment!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-microscope"></i> Interactive</span>
+                            <span class="attraction-badge"><i class="fas fa-bug"></i> Butterfly House</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-thumbs-up"></i> Kid Favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Woodland Park Zoo -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="animal outdoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1548844496-5c240211eaa5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Woodland Park Zoo</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 5500 Phinney Ave N, Seattle, WA 98103</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 9:30 AM - 6:00 PM (Summer)</span>
+                            <span><i class="fas fa-dollar-sign"></i> $15.75-$22.75</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.3/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Award-winning zoo featuring over 300 species in naturalistic habitats. Kids can see elephants, penguins, gorillas, and more. Don't miss the Zoomazium indoor play space for younger children!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-paw"></i> Animals</span>
+                            <span class="attraction-badge"><i class="fas fa-tree"></i> Outdoor</span>
+                            <span class="attraction-badge"><i class="fas fa-child"></i> Play Area</span>
+                            <span class="attraction-badge"><i class="fas fa-thumbs-up"></i> Kid Favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Museum of Flight -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum science indoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1600421539016-cc3f0866d2b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Museum of Flight</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 9404 E Marginal Way S, Seattle, WA 98108</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $17-$25</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.7/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">The largest private air and space museum in the world with over 175 aircraft and spacecraft. Kids can sit in cockpits, explore Air Force One, and try flight simulators!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-plane"></i> Aviation</span>
+                            <span class="attraction-badge"><i class="fas fa-shuttle-van"></i> Simulators</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-bus"></i> Need Transportation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seattle Aquarium -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="animal indoor waterfront">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1571175474760-25c975a82cd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Seattle Aquarium</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 1483 Alaskan Way, Seattle, WA 98101</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 9:30 AM - 6:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $19.95-$29.95</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.0/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Waterfront aquarium featuring marine life of the Pacific Northwest. Highlights include touch pools, underwater dome, and playful sea otters. Check times for feeding demonstrations!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-fish"></i> Marine Life</span>
+                            <span class="attraction-badge"><i class="fas fa-hand-paper"></i> Touch Pools</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-water"></i> Waterfront</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pike Place Market -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="fun downtown">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1603076559596-c13104c0b03e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Pike Place Market</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 85 Pike St, Seattle, WA 98101</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 9:00 AM - 6:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> Free (pay as you go)</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.5/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Historic market where kids love watching fishmongers toss fish, street performers, and exploring unique shops. Don't miss the Gum Wall, Rachel the Piggy Bank, and fresh donuts!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-store"></i> Shopping</span>
+                            <span class="attraction-badge"><i class="fas fa-utensils"></i> Food</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-sun-rain"></i> All Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-walking"></i> Walking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Space Needle -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="fun seattle-center">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1551891473-09bf9e551dc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Space Needle</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 400 Broad St, Seattle, WA 98109</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 9:00 AM - 10:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $24.50-$37.50</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.3/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Seattle's iconic landmark featuring a revolving glass floor and observation deck. Kids are fascinated by the glass floor and seeing the city from 520 feet up!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-eye"></i> Views</span>
+                            <span class="attraction-badge"><i class="fas fa-building"></i> Landmark</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-sun-rain"></i> All Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-camera"></i> Photo Op</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Museum of Pop Culture -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum fun indoor seattle-center">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1561814306-c401a89724f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Museum of Pop Culture (MoPOP)</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 325 5th Ave N, Seattle, WA 98109</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $26-$33</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.2/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Vibrant museum celebrating pop culture with interactive music exhibits, science fiction displays, and fantasy realms. Kids can create music, explore movie props, and engage with contemporary culture!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-music"></i> Music</span>
+                            <span class="attraction-badge"><i class="fas fa-film"></i> Movies</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-hands"></i> Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seattle Great Wheel -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="fun outdoor waterfront">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1604009156737-e0cbae0aea1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Seattle Great Wheel</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 1301 Alaskan Way, Seattle, WA 98101</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 10:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $14-$17</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.2/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">175-foot Ferris wheel on Seattle's waterfront offering fantastic views of the city, Puget Sound, and mountains beyond. Each gondola is fully enclosed and climate controlled.</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-eye"></i> Views</span>
+                            <span class="attraction-badge"><i class="fas fa-water"></i> Waterfront</span>
+                            <span class="attraction-badge"><i class="fas fa-sun"></i> Nice Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-camera"></i> Photo Op</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alki Beach -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="outdoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1571543423108-44b4e770daf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Alki Beach</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> Alki Ave SW, Seattle, WA 98116</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 4:00 AM - 11:30 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> Free</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.4/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">2.5-mile-long beach strip with views of downtown Seattle, playground equipment, and calm water for wading. Great spot for beach combing, picnicking, and watching ferry boats pass by.</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-water"></i> Beach</span>
+                            <span class="attraction-badge"><i class="fas fa-sun"></i> Nice Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-child"></i> Playground</span>
+                            <span class="attraction-badge"><i class="fas fa-ice-cream"></i> Treats</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Washington State Ferries -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="fun outdoor waterfront">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1538041335388-2297216e6565?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Washington State Ferries</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 801 Alaskan Way, Seattle, WA 98104</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> Varies by route</span>
+                            <span><i class="fas fa-dollar-sign"></i> $9.25-$19.10 vehicle & driver, $4.95-$9.05 passenger</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.6/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Take a scenic ferry ride to Bainbridge Island (35 min) or Bremerton (60 min) for spectacular views of the Seattle skyline, mountains, and possible wildlife sightings like seals and eagles.</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-ship"></i> Boat Ride</span>
+                            <span class="attraction-badge"><i class="fas fa-sun"></i> Nice Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-eye"></i> Views</span>
+                            <span class="attraction-badge"><i class="fas fa-camera"></i> Photo Op</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Museum of Illusions -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum fun indoor downtown">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1550826679-afb587c17224?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Museum of Illusions</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 2045 5th Ave, Seattle, WA 98121</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 8:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $19-$24</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                4.8/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Interactive museum with optical illusions, holograms, and mind-bending exhibits that challenge perception. Kids love the unusual photo opportunities and hands-on puzzles!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-magic"></i> Illusions</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-camera"></i> Photo Op</span>
+                            <span class="attraction-badge"><i class="fas fa-thumbs-up"></i> Kid Favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discovery Park -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="outdoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1590668159802-8fd9c44b7e56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Discovery Park</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 3801 Discovery Park Blvd, Seattle, WA 98199</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 4:00 AM - 11:30 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> Free</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.5/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Seattle's largest park (534 acres) with beaches, forests, meadows, and a lighthouse. Perfect for a family hike with easy trails and chances to spot wildlife like eagles, seals, and deer.</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-hiking"></i> Hiking</span>
+                            <span class="attraction-badge"><i class="fas fa-tree"></i> Nature</span>
+                            <span class="attraction-badge"><i class="fas fa-sun"></i> Nice Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-child"></i> Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">Additional Attractions to Consider</h2>
+        <div class="row attractions-row">
+            <!-- Fremont Troll -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="fun outdoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1599430618131-e2fecfa25a01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Fremont Troll</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> N 36th St, Seattle, WA 98103</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 24 hours</span>
+                            <span><i class="fas fa-dollar-sign"></i> Free</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.1/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Giant stone troll sculpture under the Aurora Bridge crushing a real Volkswagen Beetle. Kids love climbing on this quirky Seattle landmark - a quick, fun photo stop!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-camera"></i> Photo Op</span>
+                            <span class="attraction-badge"><i class="fas fa-sun"></i> Nice Weather</span>
+                            <span class="attraction-badge"><i class="fas fa-clock"></i> Quick Visit</span>
+                            <span class="attraction-badge"><i class="fas fa-bus"></i> Need Transportation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids Discovery Museum (Bainbridge) -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum fun indoor outside">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1554474051-0b2a92e87a68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Kids Discovery Museum (KiDiMu)</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 301 Ravine Ln NE, Bainbridge Island, WA 98110</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $8.50</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                4.5/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Children's museum on Bainbridge Island (accessible by ferry) with hands-on play areas including art studio, pirate tree house, and science exhibits. Perfect for a day trip combined with the ferry ride.</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-child"></i> Play-Based</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-ship"></i> Ferry Trip</span>
+                            <span class="attraction-badge"><i class="fas fa-thumbs-up"></i> Kid Favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seattle Children's Museum -->
+            <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-type="museum fun indoor seattle-center">
+                <div class="attraction-card">
+                    <div class="attraction-image" style="background-image: url('https://images.unsplash.com/photo-1567596875098-9a343222e1ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="attraction-content">
+                        <h4 class="attraction-title">Seattle Children's Museum</h4>
+                        <p class="attraction-address"><i class="fas fa-map-marker-alt"></i> 305 Harrison St, Seattle, WA 98109</p>
+                        <div class="attraction-info">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-dollar-sign"></i> $12.50</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.0/5
+                            </span>
+                        </div>
+                        <p class="attraction-description">Play-based museum designed for children under 10 with areas for pretend play including grocery store, construction zone, and global village. Great for younger children in your group!</p>
+                        <div>
+                            <span class="attraction-badge"><i class="fas fa-child"></i> Play-Based</span>
+                            <span class="attraction-badge"><i class="fas fa-cloud-rain"></i> Rainy Day</span>
+                            <span class="attraction-badge"><i class="fas fa-baby"></i> Best for Younger Kids</span>
+                            <span class="attraction-badge"><i class="fas fa-hands"></i> Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const attractions = document.querySelectorAll('.attraction-item');
+            
+            // Initial display - show all
+            attractions.forEach(item => {
+                item.style.display = 'block';
+            });
+            
+            // Filter function
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Toggle active class
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    if (filterValue === 'all') {
+                        attractions.forEach(item => {
+                            item.style.display = 'block';
+                        });
+                    } else {
+                        attractions.forEach(item => {
+                            if (item.getAttribute('data-type').includes(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
