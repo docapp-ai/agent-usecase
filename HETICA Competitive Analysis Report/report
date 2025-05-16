@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HETICA Competitive Analysis Report - Vintage Style Jewelry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #8B5A2B;
+            --secondary-color: #D2B48C;
+            --accent-color: #CD7F32;
+            --text-color: #333;
+            --light-bg: #FDF5E6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+        
+        .header-section {
+            background-color: var(--light-bg);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        h3 {
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .brand-card {
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .brand-card-header {
+            padding: 1rem;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .brand-card-body {
+            padding: 1.5rem;
+        }
+        
+        .brand-logo {
+            max-height: 100px;
+            object-fit: contain;
+        }
+        
+        .strength {
+            color: #28a745;
+        }
+        
+        .weakness {
+            color: #dc3545;
+        }
+        
+        .recommendation {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .chart-container {
+            margin: 2rem 0;
+            height: 400px;
+        }
+        
+        .price-range, .rating-info {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--light-bg);
+            border: 1px solid var(--secondary-color);
+        }
+        
+        .product-example {
+            margin: 1rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            background-color: #f9f9f9;
+        }
+        
+        .example-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.25rem;
+        }
+        
+        .feature-comparison {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--light-bg);
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .conclusion {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .action-plan {
+            background-color: #fff;
+            border: 1px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .timeline {
+            list-style-type: none;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background-color: var(--secondary-color);
+            left: 0;
+            top: 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            left: -2.3rem;
+            top: 0.3rem;
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: var(--light-bg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-label {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .badge-custom {
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        footer {
+            background-color: var(--light-bg);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1>HETICA Competitive Analysis Report</h1>
+                    <p class="lead">Vintage-Style Jewelry | Cross-Border E-Commerce | Amazon Marketplace</p>
+                    <p class="text-muted">Analysis Date: May 16, 2025</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/ece088d8-0f73-4c67-a509-377542f5aad8._SL5000_CR0%2C0%2C5000%2C999_SX1500_.jpg" alt="HETICA Brand" class="img-fluid rounded" style="max-height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section" id="executive-summary">
+            <h2>Executive Summary</h2>
+            <p>This comprehensive analysis examines HETICA's competitive position in the vintage-style and boho jewelry niche on Amazon marketplace, focusing on cross-border e-commerce opportunities. We've analyzed HETICA's product offerings, pricing strategy, customer feedback, and brand presentation against key competitors including MINACHI, Thkmeet, and Florideco.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <i class="bi bi-check-circle" style="font-size: 2rem; color: var(--primary-color);"></i>
+                        <div class="metric-value">Strong</div>
+                        <div class="metric-label">Visual Brand Identity</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <i class="bi bi-exclamation-triangle" style="font-size: 2rem; color: var(--accent-color);"></i>
+                        <div class="metric-value">Opportunity</div>
+                        <div class="metric-label">Product Variety</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <i class="bi bi-x-circle" style="font-size: 2rem; color: #dc3545;"></i>
+                        <div class="metric-value">Challenge</div>
+                        <div class="metric-label">Review Volume</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recommendation mt-4">
+                <h4><i class="bi bi-lightbulb"></i> Key Finding</h4>
+                <p>HETICA has established a distinctive niche in the vintage and boho jewelry market with a focus on quality, aesthetics, and unique designs. The brand shows particular strength in chunky gold necklaces and western-inspired boho pieces, but faces significant competition from more established brands with broader product ranges and higher review volumes. Strategic expansion of product lines and improved marketing efforts are recommended to capitalize on HETICA's strong foundation and increase market share.</p>
+            </div>
+        </div>
+
+        <div class="section" id="market-overview">
+            <h2>Market Overview: Vintage & Boho Jewelry on Amazon</h2>
+            
+            <div class="row">
+                <div class="col-md-7">
+                    <h3>Market Trends</h3>
+                    <ul>
+                        <li><strong>Growing demand:</strong> Vintage and boho-style jewelry continues to gain popularity, especially among fashion-conscious consumers seeking unique, character-filled pieces.</li>
+                        <li><strong>Material preferences:</strong> Consumers are showing increased interest in mixed materials (wood, ceramic, metal) and statement pieces that combine vintage aesthetics with contemporary wearability.</li>
+                        <li><strong>Price sensitivity:</strong> The market shows strong demand in the $10-20 price range, balancing quality and affordability.</li>
+                        <li><strong>Styling versatility:</strong> Products that offer styling flexibility (adjustable, layerable, multi-occasion) are receiving more positive customer feedback.</li>
+                        <li><strong>Visual presentation:</strong> Brands with clear, high-quality product images and styling suggestions are gaining competitive advantage.</li>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <div class="card h-100">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">Key Market Segments</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap">
+                                <span class="badge-custom badge-primary">Chunky Gold Statements</span>
+                                <span class="badge-custom badge-secondary">Layered Necklaces</span>
+                                <span class="badge-custom badge-primary">Bohemian/Ethnic</span>
+                                <span class="badge-custom badge-secondary">Western Style</span>
+                                <span class="badge-custom badge-primary">Natural Materials</span>
+                                <span class="badge-custom badge-secondary">Pendant Necklaces</span>
+                                <span class="badge-custom badge-primary">Handcrafted Appeal</span>
+                                <span class="badge-custom badge-secondary">Adjustable Designs</span>
+                                <span class="badge-custom badge-primary">Mixed Materials</span>
+                                <span class="badge-custom badge-secondary">Statement Pieces</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="competitor-analysis">
+            <h2>Competitor Analysis</h2>
+            
+            <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                <!-- HETICA -->
+                <div class="col">
+                    <div class="brand-card">
+                        <div class="brand-card-header">
+                            <h4 class="mb-0">HETICA</h4>
+                            <div class="text-muted small">Your Brand</div>
+                        </div>
+                        <div class="brand-card-body">
+                            <div class="mb-3">
+                                <strong>Product Range:</strong> Necklaces (chunky gold, boho), earrings, rings, brooches, bracelets
+                            </div>
+                            <div class="mb-3">
+                                <strong>Price Points:</strong>
+                                <div class="price-range">$13.99 - $18.99</div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Ratings:</strong>
+                                <div class="rating-info">
+                                    <i class="bi bi-star-fill text-warning"></i> 4.3-4.5/5
+                                </div>
+                                <div class="rating-info">
+                                    ~180-240 reviews
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Bestseller Ranks:</strong>
+                                <ul>
+                                    <li>#24,478 in Clothing, Shoes & Jewelry</li>
+                                    <li>#38 in Women's Fashion Choker Necklaces</li>
+                                </ul>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Amazon Store Organization:</strong> Well-structured with category navigation for necklaces, earrings, rings, brooches, bracelets
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MINACHI -->
+                <div class="col">
+                    <div class="brand-card">
+                        <div class="brand-card-header">
+                            <h4 class="mb-0">MINACHI</h4>
+                            <div class="text-muted small">Primary Competitor</div>
+                        </div>
+                        <div class="brand-card-body">
+                            <div class="mb-3">
+                                <strong>Product Range:</strong> Extensive range of necklaces, earrings, bracelets, hair accessories with focus on bohemian/hippie style
+                            </div>
+                            <div class="mb-3">
+                                <strong>Price Points:</strong>
+                                <div class="price-range">$7.99 - $14.99</div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Ratings:</strong>
+                                <div class="rating-info">
+                                    <i class="bi bi-star-fill text-warning"></i> 4.0-4.5/5
+                                </div>
+                                <div class="rating-info">
+                                    300-570+ reviews
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Bestseller Ranks:</strong>
+                                <ul>
+                                    <li>#45,659 in Clothing, Shoes & Jewelry</li>
+                                    <li>#23 in Women's Y-Necklaces</li>
+                                </ul>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Unique Selling Points:</strong> Signature colorful ceramic beads, extensive product variety (574+ products), consistent visual style
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thkmeet -->
+                <div class="col">
+                    <div class="brand-card">
+                        <div class="brand-card-header">
+                            <h4 class="mb-0">Thkmeet</h4>
+                            <div class="text-muted small">Secondary Competitor</div>
+                        </div>
+                        <div class="brand-card-body">
+                            <div class="mb-3">
+                                <strong>Product Range:</strong> Diverse styles including vintage, bohemian, gypsy, ethnic, punk, and gothic jewelry
+                            </div>
+                            <div class="mb-3">
+                                <strong>Price Points:</strong>
+                                <div class="price-range">$3.99 - $26.99</div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Ratings:</strong>
+                                <div class="rating-info">
+                                    <i class="bi bi-star-fill text-warning"></i> 2.3-5.0/5
+                                </div>
+                                <div class="rating-info">
+                                    2-1176 reviews
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Unique Selling Points:</strong> Wide variety of vintage-inspired styles, jewelry sets (necklace + earrings), statement pieces, affordable prices
+                            </div>
+                            <div class="mb-3">
+                                <strong>Product Presentation:</strong> Clear product images with white backgrounds but lacks on-model photography
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Florideco -->
+                <div class="col">
+                    <div class="brand-card">
+                        <div class="brand-card-header">
+                            <h4 class="mb-0">Florideco</h4>
+                            <div class="text-muted small">Secondary Competitor</div>
+                        </div>
+                        <div class="brand-card-body">
+                            <div class="mb-3">
+                                <strong>Product Range:</strong> Rings, earrings, bracelets, anklets, jewelry sets with bohemian, minimalist, and western styles
+                            </div>
+                            <div class="mb-3">
+                                <strong>Price Points:</strong>
+                                <div class="price-range">$7.00 - $26.00</div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Ratings:</strong>
+                                <div class="rating-info">
+                                    <i class="bi bi-star-fill text-warning"></i> 3.8-4.8/5
+                                </div>
+                                <div class="rating-info">
+                                    22-2,564 reviews
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Unique Selling Points:</strong> Bundled sets (24-30pc), hypoallergenic materials, 14K/18K gold plating, adjustable designs
+                            </div>
+                            <div class="mb-3">
+                                <strong>Special Features:</strong> Frequent discounts and coupons (10-30% off)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Product Comparison Analysis</h3>
+            <div class="feature-comparison mb-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>HETICA</th>
+                            <th>MINACHI</th>
+                            <th>Thkmeet</th>
+                            <th>Florideco</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Product Variety</td>
+                            <td>Medium (5 categories)</td>
+                            <td>High (574+ products)</td>
+                            <td>Medium-High (variety of styles)</td>
+                            <td>Medium (93 products)</td>
+                        </tr>
+                        <tr>
+                            <td>Price Competitiveness</td>
+                            <td>Medium-High ($13.99-$18.99)</td>
+                            <td>High ($7.99-$14.99)</td>
+                            <td>High ($3.99-$26.99)</td>
+                            <td>Medium ($7.00-$26.00)</td>
+                        </tr>
+                        <tr>
+                            <td>Material Quality</td>
+                            <td>Alloy, Gold Plated, Wood, Hemp</td>
+                            <td>Ceramic Beads, Zinc Alloy, Steel</td>
+                            <td>Metal, Beads, Faux Pearls, Resin</td>
+                            <td>Steel, 14K/18K Gold Plated, CZ</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Review Volume</td>
+                            <td>Low-Medium (180-240)</td>
+                            <td>Medium-High (300-570+)</td>
+                            <td>Varied (2-1176)</td>
+                            <td>Varied (22-2564)</td>
+                        </tr>
+                        <tr>
+                            <td>Rating Quality</td>
+                            <td>High (4.3-4.5/5)</td>
+                            <td>Medium-High (4.0-4.5/5)</td>
+                            <td>Variable (2.3-5.0/5)</td>
+                            <td>Medium-High (3.8-4.8/5)</td>
+                        </tr>
+                        <tr>
+                            <td>Product Photography</td>
+                            <td>High quality, some on-model</td>
+                            <td>High quality, multiple angles</td>
+                            <td>Clear product shots, no models</td>
+                            <td>Clear product shots, limited styling</td>
+                        </tr>
+                        <tr>
+                            <td>Special Offers</td>
+                            <td>5-10% coupons</td>
+                            <td>5-15% off promotions</td>
+                            <td>5% coupons, some discounts</td>
+                            <td>10-30% coupons, bundled sets</td>
+                        </tr>
+                        <tr>
+                            <td>Store Organization</td>
+                            <td>Well-structured, clear categories</td>
+                            <td>Large inventory, searchable</td>
+                            <td>Limited structure</td>
+                            <td>Organized by product type</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping Cost to Singapore</td>
+                            <td>$7.95-$8.01</td>
+                            <td>$8.28</td>
+                            <td>Similar range</td>
+                            <td>Similar range</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section" id="strengths-weaknesses">
+            <h2>HETICA SWOT Analysis</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-success-subtle">
+                            <h3 class="card-title mb-0 text-success">Strengths</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>Distinctive product designs:</strong> HETICA's chunky gold necklaces and Western-inspired boho designs stand out with unique aesthetic appeal.</li>
+                                <li><strong>Higher quality ratings:</strong> Consistent 4.3-4.5 star ratings demonstrate good product quality and customer satisfaction.</li>
+                                <li><strong>Well-organized store:</strong> Clear category structure makes navigation easy for shoppers.</li>
+                                <li><strong>Strong visual branding:</strong> Cohesive aesthetic across product lines creates a recognizable brand identity.</li>
+                                <li><strong>Quality photography:</strong> High-quality product images with some on-model photos enhance customer experience.</li>
+                                <li><strong>Premium positioning:</strong> Slightly higher price points ($13.99-$18.99) suggest premium quality.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-danger-subtle">
+                            <h3 class="card-title mb-0 text-danger">Weaknesses</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>Limited product variety:</strong> Smaller product catalog compared to competitors like MINACHI (574+ products).</li>
+                                <li><strong>Fewer customer reviews:</strong> Lower review counts (180-240) compared to competitors with 300-2500+ reviews.</li>
+                                <li><strong>Higher price points:</strong> Generally higher prices than MINACHI may deter price-sensitive customers.</li>
+                                <li><strong>Store visibility:</strong> Lower Amazon Best Sellers rank in some categories compared to competitors.</li>
+                                <li><strong>Limited product differentiation:</strong> Some products have similar features to competitors without clear unique selling points.</li>
+                                <li><strong>Fewer promotional offers:</strong> Limited discount strategy compared to competitors with more aggressive promotions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-info-subtle">
+                            <h3 class="card-title mb-0 text-primary">Opportunities</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>Product line expansion:</strong> Introducing new designs in popular vintage/boho substyles.</li>
+                                <li><strong>Jewelry sets:</strong> Developing coordinated sets (necklace + earrings) like Thkmeet to increase average order value.</li>
+                                <li><strong>Natural material focus:</strong> Further emphasizing and expanding the wood, hemp, and natural material offerings.</li>
+                                <li><strong>Review generation:</strong> Implementing strategies to increase customer reviews and ratings.</li>
+                                <li><strong>Promotional strategy:</strong> Introducing bundled offerings and more attractive discounts.</li>
+                                <li><strong>Cross-cultural designs:</strong> Creating pieces that blend vintage Western style with Asian aesthetic elements.</li>
+                                <li><strong>Seasonal collections:</strong> Developing limited-edition seasonal collections to create urgency.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning-subtle">
+                            <h3 class="card-title mb-0 text-warning">Threats</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>Price competition:</strong> Competitors like MINACHI offering similar styles at lower price points.</li>
+                                <li><strong>Market saturation:</strong> Growing number of brands entering the vintage/boho jewelry space.</li>
+                                <li><strong>Product imitation:</strong> Risk of distinctive designs being copied by competitors.</li>
+                                <li><strong>Review disparity:</strong> Competitors with significantly more reviews appearing more trustworthy to shoppers.</li>
+                                <li><strong>Algorithm changes:</strong> Amazon search algorithm updates potentially affecting visibility.</li>
+                                <li><strong>Material cost fluctuations:</strong> Rising costs of materials impacting profit margins.</li>
+                                <li><strong>Shipping challenges:</strong> Cross-border shipping delays or cost increases affecting customer satisfaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="product-examples">
+            <h2>Key Product Comparisons</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="product-example">
+                        <h4>Chunky Gold Necklace Comparison</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>HETICA Chunky Gold Necklace</h5>
+                                <ul>
+                                    <li>Price: $18.99</li>
+                                    <li>Rating: 4.5/5 (238 reviews)</li>
+                                    <li>Materials: Alloy Gold Plated, CZ</li>
+                                    <li>Features: Heart pendants, sunflower design</li>
+                                    <li>Bestseller Rank: #38 in Women's Fashion Choker Necklaces</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>MINACHI Ceramic Bead Necklace</h5>
+                                <ul>
+                                    <li>Price: $12.99-$13.99</li>
+                                    <li>Rating: 4.5/5 (306 reviews)</li>
+                                    <li>Materials: Zinc and Ceramic</li>
+                                    <li>Features: Y-necklace design, antique flower pendant</li>
+                                    <li>Bestseller Rank: #23 in Women's Y-Necklaces</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="recommendation">
+                                    <strong>Key Insight:</strong> HETICA's chunky gold necklace maintains a higher price point with similar rating quality, suggesting strong product positioning. However, the MINACHI product has more reviews at a lower price point, potentially attracting more price-conscious customers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="product-example">
+                        <h4>Boho/Western Style Comparison</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>HETICA Western Layered Boho Necklace</h5>
+                                <ul>
+                                    <li>Price: $13.99</li>
+                                    <li>Rating: 4.3/5 (183 reviews)</li>
+                                    <li>Materials: Metal, Hemp Cords, Wood Beads</li>
+                                    <li>Features: Adjustable hemp cords, copper coins accent</li>
+                                    <li>Bestseller Rank: #1,153 in Women's Fashion Chokers</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Florideco Bohemian Jewelry Set</h5>
+                                <ul>
+                                    <li>Price: $19.99</li>
+                                    <li>Rating: 4.0/5 (218 reviews)</li>
+                                    <li>Materials: Turquoise, Gemstone</li>
+                                    <li>Features: Complete set with necklace, bracelet, earrings</li>
+                                    <li>Special: Multiple pieces in a coordinated set</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="recommendation">
+                                    <strong>Key Insight:</strong> HETICA's boho necklace offers good value with natural materials at a lower price point than Florideco's set. However, Florideco's complete jewelry set provides more perceived value despite the higher price, suggesting an opportunity for HETICA to expand into coordinated sets.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="recommendations">
+            <h2>Strategic Recommendations</h2>
+            
+            <div class="recommendation">
+                <h4><i class="bi bi-1-circle"></i> Product Range Expansion</h4>
+                <p><strong>Strategy:</strong> Expand product variety while maintaining HETICA's distinctive aesthetic.</p>
+                <ul>
+                    <li>Introduce coordinated jewelry sets (necklace + earrings + bracelet) to increase average order value</li>
+                    <li>Develop more variety within successful product lines (chunky gold necklaces, boho pieces)</li>
+                    <li>Explore trending subcategories like vintage-inspired hair accessories</li>
+                    <li>Create limited edition seasonal collections to drive urgency</li>
+                </ul>
+            </div>
+            
+            <div class="recommendation">
+                <h4><i class="bi bi-2-circle"></i> Pricing & Promotion Strategy</h4>
+                <p><strong>Strategy:</strong> Optimize pricing structure and promotional offers to compete effectively.</p>
+                <ul>
+                    <li>Maintain premium pricing for distinctive designs but introduce some entry-level products at $10-12 price points</li>
+                    <li>Implement tiered discounts for multiple purchases (save 10% when buying 2, 15% when buying 3+)</li>
+                    <li>Create bundle offers combining complementary pieces at a slight discount</li>
+                    <li>Run limited-time promotions tied to seasonal events or holidays</li>
+                </ul>
+            </div>
+            
+            <div class="recommendation">
+                <h4><i class="bi bi-3-circle"></i> Brand & Product Presentation</h4>
+                <p><strong>Strategy:</strong> Enhance the visual storytelling and product presentation.</p>
+                <ul>
+                    <li>Increase on-model photography showing styling options and wearability</li>
+                    <li>Create lifestyle imagery that highlights the vintage/boho aesthetic</li>
+                    <li>Develop more detailed product descriptions highlighting unique craftsmanship and materials</li>
+                    <li>Add styling guidance and outfit suggestions to product listings</li>
+                </ul>
+            </div>
+            
+            <div class="recommendation">
+                <h4><i class="bi bi-4-circle"></i> Review Generation Strategy</h4>
+                <p><strong>Strategy:</strong> Increase review volume and maintain high rating quality.</p>
+                <ul>
+                    <li>Implement Amazon's "Request a Review" feature for all orders</li>
+                    <li>Include insert cards with products encouraging reviews</li>
+                    <li>Follow up with post-purchase emails to request feedback</li>
+                    <li>Consider Amazon Vine program for new product launches</li>
+                    <li>Address negative reviews promptly and professionally</li>
+                </ul>
+            </div>
+            
+            <div class="recommendation">
+                <h4><i class="bi bi-5-circle"></i> Unique Selling Proposition Emphasis</h4>
+                <p><strong>Strategy:</strong> Clearly articulate and emphasize HETICA's unique selling points.</p>
+                <ul>
+                    <li>Highlight the handcrafted aspects and natural materials in product descriptions</li>
+                    <li>Create a brand story focusing on the vintage-inspired design philosophy</li>
+                    <li>Emphasize any cross-cultural design elements that make the products unique</li>
+                    <li>Develop a signature design element or material combination that becomes recognizable</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="action-plan">
+            <h2>Implementation Action Plan</h2>
+            
+            <div class="action-plan">
+                <h4>Short-Term Actions (1-3 Months)</h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <strong>Optimize Existing Listings:</strong> Enhance product descriptions, imagery, and keywords for current products to improve conversion rates.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Implement Review Strategy:</strong> Begin systematic approach to increasing reviews through Amazon's request system and insert cards.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Introduce Entry-Level Products:</strong> Launch 2-3 new products at the $10-12 price point to attract more price-sensitive customers.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Test Promotional Structures:</strong> Experiment with different coupon values and bundle offers to identify optimal promotional strategy.
+                    </li>
+                </ul>
+                
+                <h4 class="mt-4">Medium-Term Actions (4-6 Months)</h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <strong>Develop Jewelry Sets:</strong> Create and launch 3-5 coordinated jewelry sets combining necklaces with matching earrings and bracelets.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Expand Bestselling Lines:</strong> Add more variety to the chunky gold necklace and boho wood bead lines that are performing well.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Enhance Brand Storytelling:</strong> Develop improved A+ content on Amazon with lifestyle imagery and brand story elements.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Seasonal Collection:</strong> Design and launch a limited-edition seasonal collection aligned with upcoming fashion trends.
+                    </li>
+                </ul>
+                
+                <h4 class="mt-4">Long-Term Actions (7-12 Months)</h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <strong>Category Expansion:</strong> Consider entering new related categories like hair accessories or small leather goods that align with the vintage aesthetic.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Signature Collection:</strong> Develop a high-end signature collection with distinctive design elements unique to HETICA.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Cross-Border Optimization:</strong> Refine international shipping processes and potentially explore Amazon fulfillment in key markets.
+                    </li>
+                    <li class="timeline-item">
+                        <strong>Competitor Monitoring System:</strong> Implement ongoing competitor tracking to stay ahead of market trends and competitive threats.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="conclusion">
+            <div class="conclusion">
+                <h2 class="text-center mb-4">Conclusion</h2>
+                <p>HETICA has established a promising position in the competitive vintage-style and boho jewelry market on Amazon, with particular strength in chunky gold necklaces and Western-inspired designs. The brand demonstrates good product quality and customer satisfaction through consistently high ratings, but faces challenges in terms of product variety and review volume compared to key competitors.</p>
+                
+                <p>By strategically expanding product lines, optimizing pricing and promotional strategies, enhancing product presentation, increasing review volume, and clearly articulating unique selling points, HETICA has significant opportunity to grow market share and strengthen its competitive position in this niche.</p>
+                
+                <p>The cross-border e-commerce environment presents both challenges and opportunities, but with HETICA's strong foundation in product quality and distinctive aesthetic, the brand is well-positioned to capitalize on the growing demand for unique, character-filled vintage and boho jewelry in the global marketplace.</p>
+                
+                <div class="text-center mt-4">
+                    <h5>Key Success Metrics to Track:</h5>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <div class="metric-card">
+                                <div class="metric-label">Product Catalog Size</div>
+                                <div class="metric-value">+25%</div>
+                                <div class="metric-label">Goal (6 months)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="metric-card">
+                                <div class="metric-label">Average Review Count</div>
+                                <div class="metric-value">+100%</div>
+                                <div class="metric-label">Goal (6 months)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="metric-card">
+                                <div class="metric-label">Bestseller Rank</div>
+                                <div class="metric-value">Top 20</div>
+                                <div class="metric-label">Goal (Key Categories)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="metric-card">
+                                <div class="metric-label">Average Order Value</div>
+                                <div class="metric-value">+15%</div>
+                                <div class="metric-label">Goal (6 months)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>HETICA Competitive Analysis Report</strong> | Generated: May 16, 2025</p>
+            <p class="text-muted">This report is confidential and intended for HETICA brand owners and stakeholders only.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
