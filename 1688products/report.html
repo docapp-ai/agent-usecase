@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北美市场复古首饰产品分析报告</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        h1 {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #6c757d;
+            font-weight: 300;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .section-title {
+            color: #343a40;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 10px;
+            color: #6c5ce7;
+        }
+        .product-card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: #f8f9fa;
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .product-meta {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .chart-container {
+            height: 300px;
+            margin-bottom: 30px;
+        }
+        .key-insight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c5ce7;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .key-insight-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #343a40;
+        }
+        .key-insight-text {
+            color: #495057;
+        }
+        .table-responsive {
+            margin-bottom: 30px;
+        }
+        .conclusion {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .badge-profit {
+            background-color: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: normal;
+        }
+        .badge-logistics {
+            background-color: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: normal;
+        }
+        .badge-popular {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: normal;
+        }
+        .date-info {
+            text-align: right;
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>北美市场复古首饰产品分析报告</h1>
+            <p class="subtitle">基于销量、价格、物流成本及利润空间的综合分析</p>
+            <p class="date-info">报告生成时间：2025年5月16日</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i>市场概览</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="key-insight">
+                        <div class="key-insight-title">北美复古首饰市场特点</div>
+                        <div class="key-insight-text">
+                            <p>北美市场对复古风格首饰的需求持续增长，尤其是在年轻消费者中更为明显。复古首饰因其独特的设计和文化内涵受到北美消费者的喜爱，可以观察到以下趋势：</p>
+                            <ul>
+                                <li>欧美复古风格、宫廷风、中古风（Vintage）、法式复古等风格在北美市场受欢迎</li>
+                                <li>环保材质和具有故事性的产品更容易吸引消费者</li>
+                                <li>价格区间广泛，从几美元到几十美元不等，满足不同消费群体</li>
+                                <li>多元化的产品组合（套装销售）能够提高客单价</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-gem"></i>热门复古首饰产品分析</h2>
+            
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h3>产品类型分布</h3>
+                    <p>根据市场数据分析，复古首饰主要分为以下几类，其中项链和耳环是销量最高的两类产品：</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>首饰类型</th>
+                                    <th>市场占比</th>
+                                    <th>平均批发价格（人民币）</th>
+                                    <th>北美零售价参考（美元）</th>
+                                    <th>毛利率参考</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>项链</td>
+                                    <td>35%</td>
+                                    <td>¥15-65</td>
+                                    <td>$19.99-59.99</td>
+                                    <td>200%-300%</td>
+                                </tr>
+                                <tr>
+                                    <td>耳环</td>
+                                    <td>30%</td>
+                                    <td>¥8-35</td>
+                                    <td>$12.99-39.99</td>
+                                    <td>250%-350%</td>
+                                </tr>
+                                <tr>
+                                    <td>戒指</td>
+                                    <td>15%</td>
+                                    <td>¥10-130</td>
+                                    <td>$15.99-99.99</td>
+                                    <td>180%-250%</td>
+                                </tr>
+                                <tr>
+                                    <td>手链/手镯</td>
+                                    <td>12%</td>
+                                    <td>¥12-50</td>
+                                    <td>$16.99-49.99</td>
+                                    <td>200%-280%</td>
+                                </tr>
+                                <tr>
+                                    <td>首饰套装</td>
+                                    <td>8%</td>
+                                    <td>¥20-100</td>
+                                    <td>$29.99-89.99</td>
+                                    <td>180%-250%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h3>热门材质分析</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>材质类型</th>
+                                    <th>特点</th>
+                                    <th>受欢迎程度</th>
+                                    <th>物流成本影响</th>
+                                    <th>利润空间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>合金（镀金/镀银）</td>
+                                    <td>价格适中，款式多样，外观好</td>
+                                    <td>★★★★★</td>
+                                    <td>低（轻量）</td>
+                                    <td>高</td>
+                                </tr>
+                                <tr>
+                                    <td>925纯银</td>
+                                    <td>质感好，过敏风险低，可做旧处理</td>
+                                    <td>★★★★</td>
+                                    <td>中</td>
+                                    <td>中高</td>
+                                </tr>
+                                <tr>
+                                    <td>天然宝石/半宝石（绿松石、珍珠等）</td>
+                                    <td>独特自然，有文化内涵</td>
+                                    <td>★★★★</td>
+                                    <td>中高（质量较重）</td>
+                                    <td>高</td>
+                                </tr>
+                                <tr>
+                                    <td>黄铜/铜材质</td>
+                                    <td>复古感强，价格适中</td>
+                                    <td>★★★</td>
+                                    <td>中高（质量较重）</td>
+                                    <td>中</td>
+                                </tr>
+                                <tr>
+                                    <td>天然木材（紫檀、绿檀等）</td>
+                                    <td>环保，有东方韵味</td>
+                                    <td>★★★</td>
+                                    <td>低（轻量）</td>
+                                    <td>高</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN01SC52RV1qYiS7Vak5h_!!2214153385508-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">法式复古珠宝耳环</h5>
+                            <div class="product-price">¥32.00 <span class="badge badge-popular">月销0.3万+</span></div>
+                            <div class="product-meta">回头率：高（360+人加购）</div>
+                            <div class="mt-2">
+                                <span class="tag">法式复古</span>
+                                <span class="tag">镶钻</span>
+                                <span class="tag">珍珠</span>
+                                <span class="tag">耳夹</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：高</span>
+                                <span class="badge badge-logistics">物流成本：低</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN01XtjrBY1qYiR4VFQ0a_!!2214153385508-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">中古vintage复古宫廷风琉璃黄铜镂空彩色琉璃轻奢项链</h5>
+                            <div class="product-price">¥65.00 <span class="badge badge-popular">月销2.0万+</span></div>
+                            <div class="product-meta">回头率：高（370+人加购）</div>
+                            <div class="mt-2">
+                                <span class="tag">宫廷风</span>
+                                <span class="tag">琉璃</span>
+                                <span class="tag">黄铜</span>
+                                <span class="tag">锁骨链</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：中高</span>
+                                <span class="badge badge-logistics">物流成本：中</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN01JOFUYe1UEBGuFjAsa_!!2211467102485-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">欧美复古圆圈轻奢冷淡风高级感金属耳环</h5>
+                            <div class="product-price">¥8.66</div>
+                            <div class="product-meta">简约风格，适合多种场合</div>
+                            <div class="mt-2">
+                                <span class="tag">欧美</span>
+                                <span class="tag">冷淡风</span>
+                                <span class="tag">金属</span>
+                                <span class="tag">高级感</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：高</span>
+                                <span class="badge badge-logistics">物流成本：低</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN01LhpSj01QnD6McqXCv_!!2766332020-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">国潮福禄葫芦s925纯银项链</h5>
+                            <div class="product-price">¥34.30 <span class="badge badge-popular">销10+件</span></div>
+                            <div class="product-meta">重量：2.52g</div>
+                            <div class="mt-2">
+                                <span class="tag">国潮</span>
+                                <span class="tag">s925纯银</span>
+                                <span class="tag">福禄葫芦</span>
+                                <span class="tag">小清新</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：中</span>
+                                <span class="badge badge-logistics">物流成本：低</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN01pb6U2C2IfPXdJtbRA_!!2218259089313-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">跨境欧美高级感立体几何弧形耳钉</h5>
+                            <div class="product-price">¥9.90</div>
+                            <div class="product-meta">加购人数：70+</div>
+                            <div class="mt-2">
+                                <span class="tag">高级感</span>
+                                <span class="tag">复古港风</span>
+                                <span class="tag">几何</span>
+                                <span class="tag">耳钉</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：高</span>
+                                <span class="badge badge-logistics">物流成本：低</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://cbu01.alicdn.com/img/ibank/O1CN0104reBp22FGzeF9mIu_!!2214920307090-0-cib.jpg');"></div>
+                        <div class="product-details">
+                            <h5 class="product-title">原创国潮藏式S925纯银文殊黄财神戒指</h5>
+                            <div class="product-price">¥130.00 <span class="badge badge-popular">销10+件</span></div>
+                            <div class="product-meta">评价："做工很精细"</div>
+                            <div class="mt-2">
+                                <span class="tag">原创设计</span>
+                                <span class="tag">S925纯银</span>
+                                <span class="tag">做旧</span>
+                                <span class="tag">民族风</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge badge-profit">利润空间：中</span>
+                                <span class="badge badge-logistics">物流成本：低</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-shipping-fast"></i>物流成本分析</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>物流成本对于跨境电商至关重要，尤其是针对北美市场的复古首饰产品。以下是主要物流方式及成本分析：</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>物流方式</th>
+                                    <th>运输时间</th>
+                                    <th>适用产品</th>
+                                    <th>成本估算 (200g包裹)</th>
+                                    <th>优势</th>
+                                    <th>劣势</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>国际快递 (DHL/FedEx/UPS)</td>
+                                    <td>3-7天</td>
+                                    <td>高价值产品，S925纯银等</td>
+                                    <td>约¥120-180</td>
+                                    <td>速度快，可追踪，安全性高</td>
+                                    <td>成本高，不适合低价值商品</td>
+                                </tr>
+                                <tr>
+                                    <td>专线物流</td>
+                                    <td>10-15天</td>
+                                    <td>中等价值产品，套装</td>
+                                    <td>约¥60-100</td>
+                                    <td>性价比高，稳定性好</td>
+                                    <td>时效较慢，通关风险要考虑</td>
+                                </tr>
+                                <tr>
+                                    <td>国际邮政小包</td>
+                                    <td>15-30天</td>
+                                    <td>合金饰品，低价值单品</td>
+                                    <td>约¥30-50</td>
+                                    <td>成本低，适合批量发货</td>
+                                    <td>时效慢，跟踪信息有限</td>
+                                </tr>
+                                <tr>
+                                    <td>海外仓发货</td>
+                                    <td>1-3天（当地）</td>
+                                    <td>热销款，快速周转产品</td>
+                                    <td>前期入仓成本+当地配送费</td>
+                                    <td>客户体验好，退货便利</td>
+                                    <td>前期投入大，库存风险</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="key-insight mt-4">
+                        <div class="key-insight-title">物流优化建议</div>
+                        <div class="key-insight-text">
+                            <ol>
+                                <li><strong>轻量化包装</strong>：首饰产品采用轻量化、防压防潮包装，减少物流成本同时确保产品安全</li>
+                                <li><strong>批量发货</strong>：整合订单批量发货，与物流供应商谈判更优惠的价格</li>
+                                <li><strong>海外仓模式</strong>：对于热销款可考虑海外仓模式，提高客户体验并降低单件物流成本</li>
+                                <li><strong>物流保险</strong>：高价值产品（如S925纯银、宝石饰品）建议购买物流保险，降低风险</li>
+                                <li><strong>产品组合发货</strong>：将多款产品组合成套装销售，优化物流成本</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-dollar-sign"></i>利润空间分析</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>北美复古首饰市场提供了可观的利润空间，以下是不同产品类型的成本和利润分析：</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>产品类型</th>
+                                    <th>批发价(¥)</th>
+                                    <th>物流成本(¥)</th>
+                                    <th>其他成本(¥)</th>
+                                    <th>北美零售价($)</th>
+                                    <th>估算利润率</th>
+                                    <th>推荐指数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>金属耳环（轻量型）</td>
+                                    <td>8-15</td>
+                                    <td>5-8</td>
+                                    <td>3-5</td>
+                                    <td>15.99-24.99</td>
+                                    <td>250%-300%</td>
+                                    <td>★★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td>复古风项链（普通款）</td>
+                                    <td>15-30</td>
+                                    <td>8-12</td>
+                                    <td>5-8</td>
+                                    <td>24.99-39.99</td>
+                                    <td>200%-250%</td>
+                                    <td>★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td>925银复古戒指</td>
+                                    <td>80-130</td>
+                                    <td>5-8</td>
+                                    <td>10-15</td>
+                                    <td>59.99-99.99</td>
+                                    <td>150%-200%</td>
+                                    <td>★★★</td>
+                                </tr>
+                                <tr>
+                                    <td>绿松石/珍珠首饰</td>
+                                    <td>20-50</td>
+                                    <td>8-15</td>
+                                    <td>5-10</td>
+                                    <td>29.99-59.99</td>
+                                    <td>180%-230%</td>
+                                    <td>★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td>复古首饰套装（3-4件）</td>
+                                    <td>30-70</td>
+                                    <td>15-25</td>
+                                    <td>10-15</td>
+                                    <td>49.99-89.99</td>
+                                    <td>200%-250%</td>
+                                    <td>★★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td>木质复古饰品</td>
+                                    <td>10-20</td>
+                                    <td>5-8</td>
+                                    <td>3-5</td>
+                                    <td>19.99-29.99</td>
+                                    <td>220%-280%</td>
+                                    <td>★★★★</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-insight mt-4">
+                <div class="key-insight-title">利润最大化策略</div>
+                <div class="key-insight-text">
+                    <ol>
+                        <li><strong>重点推广轻质、高价值产品</strong>：如金属耳环、小型项链等，物流成本低但可售价高</li>
+                        <li><strong>套装销售策略</strong>：将单价低的产品组合成套装销售，提高客单价和整体利润</li>
+                        <li><strong>差异化定价</strong>：根据不同地区、不同客户群体采用不同的定价策略</li>
+                        <li><strong>季节性产品规划</strong>：针对北美重要节日（如圣诞节、情人节、感恩节）推出主题产品，可提高售价</li>
+                        <li><strong>品牌溢价</strong>：通过精美包装、品牌故事和文化内涵，增加产品附加值</li>
+                        <li><strong>直接采购</strong>：减少中间环节，直接从工厂批量采购，降低成本</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-shopping-cart"></i>推荐产品组合</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>根据销量、价格、物流成本和利润空间的综合分析，以下是几组推荐的产品组合，这些组合能够最大化利润并降低物流成本：</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">高利润组合 #1</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>法式复古轻奢组合</h6>
+                            <ul>
+                                <li>法式复古珠宝耳环 (¥32)</li>
+                                <li>欧美复古圆圈轻奢冷淡风耳环 (¥8.66)</li>
+                                <li>跨境欧美高级感立体几何弧形耳钉 (¥9.90)</li>
+                            </ul>
+                            <p><strong>总批发成本：</strong>约¥50.56</p>
+                            <p><strong>预计零售价：</strong>$65-85</p>
+                            <p><strong>物流优势：</strong>轻量，包裹体积小</p>
+                            <p><strong>目标客户：</strong>追求高级感的年轻女性</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-profit">预计利润率：300%+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">高销量组合 #2</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>复古项链套装组合</h6>
+                            <ul>
+                                <li>中古vintage复古宫廷风琉璃项链 (¥65)</li>
+                                <li>国潮福禄葫芦s925纯银项链 (¥34.30)</li>
+                                <li>天然图画石山水国风吊坠 (¥13.50)</li>
+                            </ul>
+                            <p><strong>总批发成本：</strong>约¥112.80</p>
+                            <p><strong>预计零售价：</strong>$95-125</p>
+                            <p><strong>物流优势：</strong>中等重量，高价值</p>
+                            <p><strong>目标客户：</strong>喜欢东方文化元素的客户</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-profit">预计利润率：200%+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">性价比组合 #3</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>欧美复古首饰套装</h6>
+                            <ul>
+                                <li>欧美新款蝴蝶4件套套装 (¥4.30)</li>
+                                <li>欧美复古不规则天然绿松石项链 (¥4.70)</li>
+                                <li>紫檀木吊坠原创平安扣 (¥6.75)</li>
+                            </ul>
+                            <p><strong>总批发成本：</strong>约¥15.75</p>
+                            <p><strong>预计零售价：</strong>$39.99-49.99</p>
+                            <p><strong>物流优势：</strong>超轻量，成本极低</p>
+                            <p><strong>目标客户：</strong>价格敏感型消费者</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-profit">预计利润率：400%+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="key-insight">
+                        <div class="key-insight-title">供应商选择建议</div>
+                        <div class="key-insight-text">
+                            <ol>
+                                <li><strong>义乌地区</strong>：对于普通合金饰品，义乌供应商如"义乌市娇的饰品有限公司"、"义乌市禹哥电子商务商行"等提供价格优势和款式多样性</li>
+                                <li><strong>广州地区</strong>：对于中高端产品，如"广州煜璇饰品有限公司"等提供更好的品质和设计</li>
+                                <li><strong>青岛地区</strong>：如"即墨区真美饰品店"提供的中古风、法式复古产品品质稳定，月销量高</li>
+                                <li><strong>建立长期合作关系</strong>：与销量高、评价好的供应商建立长期合作，可获得更好的价格和服务</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section conclusion">
+            <h2 class="section-title"><i class="fas fa-check-circle"></i>结论与建议</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>通过对1688平台复古首饰产品的综合分析，针对北美市场的跨境电商业务，我们得出以下结论和建议：</p>
+                    
+                    <h5>最具潜力的产品类型：</h5>
+                    <ol>
+                        <li><strong>轻量型耳环/耳钉</strong>：物流成本低，款式丰富，利润空间大</li>
+                        <li><strong>复古风项链</strong>：尤其是具有文化特色的设计，在北美市场具有差异化优势</li>
+                        <li><strong>首饰套装</strong>：提高客单价，多件组合降低单件物流成本</li>
+                    </ol>
+                    
+                    <h5>最佳采购策略：</h5>
+                    <ol>
+                        <li>以义乌市场为主要采购地，辅以广州、青岛等地的特色产品</li>
+                        <li>优先选择月销量高、回头率高的产品和供应商</li>
+                        <li>适当采购一些S925纯银等中高端产品，以丰富产品线</li>
+                        <li>关注材质轻量化，降低物流成本</li>
+                    </ol>
+                    
+                    <h5>营销建议：</h5>
+                    <ol>
+                        <li>强调产品的文化背景和故事，增加产品附加值</li>
+                        <li>采用精美包装，提升品牌形象</li>
+                        <li>针对北美市场的节假日进行产品组合和促销</li>
+                        <li>通过社交媒体展示产品搭配效果，增强用户购买意愿</li>
+                    </ol>
+                    
+                    <p class="mt-4"><strong>总结：</strong>北美复古首饰市场具有良好的发展前景，通过选择适合的产品、优化物流和提升产品附加值，可以实现200%-400%的利润空间。建议从小规模试水开始，逐步扩大产品线和库存，同时持续关注市场趋势和客户反馈。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
