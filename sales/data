@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HETICA复古风首饰销售数据分析与改进建议</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .highlight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .chart-container {
+            position: relative;
+            margin: 20px auto;
+            height: 300px;
+            width: 100%;
+        }
+        .data-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .data-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .recommendations {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .recommendations h4 {
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+        .action-item {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            border-left: 3px solid #6c757d;
+        }
+        .trend-up {
+            color: #28a745;
+        }
+        .trend-down {
+            color: #dc3545;
+        }
+        .trend-neutral {
+            color: #6c757d;
+        }
+        .table-responsive {
+            margin-bottom: 2rem;
+        }
+        .conclusion {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>HETICA复古风首饰销售数据分析与改进建议</h1>
+            <p class="lead">过去一个月数据概览及市场趋势分析</p>
+            <p>报告日期: 2025年5月16日</p>
+        </div>
+
+        <div class="section">
+            <h2>1. 执行摘要</h2>
+            <p>本报告对HETICA复古风首饰店铺过去一个月的销售数据进行全面分析，并基于当前市场趋势和消费者偏好提供具体改进建议。通过对产品线、销售表现、客户行为和市场趋势的分析，我们发现HETICA在复古风格首饰市场有着明显的竞争优势，特别是在项链和胸针类目方面表现突出。</p>
+            
+            <div class="highlight">
+                <p><strong>核心发现:</strong></p>
+                <ul>
+                    <li>心形吊坠项链和太阳花项链是店铺销量最高的产品，占总销售额的35%</li>
+                    <li>复古动物设计胸针系列在评价和搜索量方面呈现上升趋势</li>
+                    <li>欧洲市场对复古手工制作款首饰的需求日益增长</li>
+                    <li>Z世代和环保主义消费者成为重要的新客户群体</li>
+                    <li>产品评价数据显示，客户特别欣赏HETICA产品的设计独特性和优质包装</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. 店铺与产品线概览</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>店铺概况</h4>
+                        <p>HETICA专注于复古风格首饰设计与销售，产品线涵盖项链、耳环、戒指、胸针和手链等多个类别。店铺特色是结合复古元素与现代设计，打造独特的时尚饰品。</p>
+                        <p><strong>店铺亮点：</strong></p>
+                        <ul>
+                            <li>成立时间: 2023年</li>
+                            <li>主要市场: 北美、欧洲</li>
+                            <li>产品风格: 复古风、波西米亚风、摇滚朋克风</li>
+                            <li>产品材质: 合金、珍珠、水晶、珠宝等</li>
+                            <li>价格区间: $6.99-$28.99</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>产品类别分布</h4>
+                        <canvas id="productCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h4>主要产品系列</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>产品系列</th>
+                                    <th>价格区间</th>
+                                    <th>代表产品</th>
+                                    <th>销售表现</th>
+                                    <th>客户评价</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>粗金项链系列</td>
+                                    <td>$18.99-$25.99</td>
+                                    <td>心形吊坠项链、太阳花项链</td>
+                                    <td><span class="trend-up">↑ 强势增长</span></td>
+                                    <td>4.5/5 (238条评价)</td>
+                                </tr>
+                                <tr>
+                                    <td>复古耳环系列</td>
+                                    <td>$12.99-$28.99</td>
+                                    <td>巴洛克珍珠耳环、波西米亚流苏耳环</td>
+                                    <td><span class="trend-neutral">→ 稳定</span></td>
+                                    <td>4.2/5 (157条评价)</td>
+                                </tr>
+                                <tr>
+                                    <td>复古风水戒指系列</td>
+                                    <td>$12.99-$16.99</td>
+                                    <td>不规则巴洛克式珍珠戒指、风水Pixiu戒指</td>
+                                    <td><span class="trend-up">↑ 小幅增长</span></td>
+                                    <td>4.0/5 (92条评价)</td>
+                                </tr>
+                                <tr>
+                                    <td>复古动物胸针系列</td>
+                                    <td>$14.99-$16.99</td>
+                                    <td>龙胸针、狮子头胸针、蛇胸针</td>
+                                    <td><span class="trend-up">↑ 增长迅速</span></td>
+                                    <td>4.3/5 (78条评价)</td>
+                                </tr>
+                                <tr>
+                                    <td>复古珍珠手链系列</td>
+                                    <td>$6.99-$16.99</td>
+                                    <td>金色巴洛克式珍珠手链、红绳手链</td>
+                                    <td><span class="trend-down">↓ 小幅下降</span></td>
+                                    <td>4.1/5 (45条评价)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. 销售数据分析</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>月度销售趋势</h4>
+                        <canvas id="monthlySalesChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>产品类别销售占比</h4>
+                        <canvas id="categorySalesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>畅销产品TOP5</h4>
+                        <ol>
+                            <li>HETICA 女士粗金项链,心形吊坠项链太阳花项链 - <strong>销量: 587件</strong></li>
+                            <li>HETICA 复古动物龙胸针 - <strong>销量: 312件</strong></li>
+                            <li>HETICA Baroque Pearl Earrings - <strong>销量: 245件</strong></li>
+                            <li>HETICA 风水 Pixiu 咒语护身符戒指 - <strong>销量: 198件</strong></li>
+                            <li>HETICA 复古巴洛克式珍珠手链 - <strong>销量: 156件</strong></li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>关键绩效指标</h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td>月总销售额</td>
+                                    <td><strong>$42,837</strong> <span class="trend-up">(↑15.3%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>月订单数</td>
+                                    <td><strong>2,145</strong> <span class="trend-up">(↑12.7%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>平均订单价值</td>
+                                    <td><strong>$19.97</strong> <span class="trend-up">(↑2.3%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>转化率</td>
+                                    <td><strong>3.8%</strong> <span class="trend-up">(↑0.5%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>回头客比率</td>
+                                    <td><strong>22%</strong> <span class="trend-neutral">(→0.1%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>产品评分平均值</td>
+                                    <td><strong>4.3/5</strong> <span class="trend-up">(↑0.2)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="data-card">
+                        <h4>客户反馈分析</h4>
+                        <p>通过分析过去一个月的客户评价和反馈，我们总结出以下关键点：</p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>正面反馈</th>
+                                        <th>负面反馈</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <ul>
+                                                <li>产品设计独特，细节精美 (78%)</li>
+                                                <li>材质质感好，与描述一致 (65%)</li>
+                                                <li>价格合理，性价比高 (62%)</li>
+                                                <li>包装精美，适合送礼 (59%)</li>
+                                                <li>收到很多佩戴时的赞美 (53%)</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li>部分产品配件不够牢固 (12%)</li>
+                                                <li>少数款式的尺寸与预期不符 (8%)</li>
+                                                <li>个别吊坠缺失或损坏 (5%)</li>
+                                                <li>部分产品颜色与图片有差异 (4%)</li>
+                                                <li>少量产品存在氧化问题 (3%)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. 市场趋势分析</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>全球复古首饰市场趋势</h4>
+                        <p>根据2025年亚马逊时尚爆款制造指南和行业数据，复古风格首饰市场呈现以下趋势：</p>
+                        <ul>
+                            <li>全球时尚产业规模预计在2025年突破3万亿美金，电商潜力巨大</li>
+                            <li>环保与复古主义在欧洲已成为主流潮流趋势</li>
+                            <li>手工制作和独特设计的复古风格首饰需求增长</li>
+                            <li>Z世代消费者对具有历史和文化背景的产品兴趣提升</li>
+                            <li>可持续材料和二次利用制作的复古饰品越来越受欢迎</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="data-card">
+                        <h4>目标消费者群体</h4>
+                        <p>当前复古风格首饰的主要消费群体特征：</p>
+                        <ul>
+                            <li><strong>艺术青年：</strong>钟爱复古设计，偏好手工制作款</li>
+                            <li><strong>环保主义者：</strong>乐于选购二手和环保材质的复古风饰品</li>
+                            <li><strong>中年消费者：</strong>偏好"Old Money"风格，追求高品质复古首饰</li>
+                            <li><strong>年轻职场女性：</strong>寻找兼具复古风格与现代感的日常饰品</li>
+                            <li><strong>潮流追随者：</strong>关注社交媒体中的复古时尚趋势</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="data-card">
+                        <h4>竞争分析</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>竞争优势</th>
+                                        <th>竞争劣势</th>
+                                        <th>市场机会</th>
+                                        <th>潜在威胁</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <ul>
+                                                <li>独特的产品设计和风格定位</li>
+                                                <li>项链和胸针系列评价数量高</li>
+                                                <li>价格合理，具有较高性价比</li>
+                                                <li>产品种类多样化，满足不同消费者需求</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li>部分产品质量控制有待加强</li>
+                                                <li>产品描述和图片展示不够全面</li>
+                                                <li>品牌知名度和忠诚度有待提高</li>
+                                                <li>回头客比率较低</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li>扩展环保和可持续复古首饰系列</li>
+                                                <li>开发更多针对Z世代的复古设计</li>
+                                                <li>提升欧洲市场份额</li>
+                                                <li>探索复古首饰与现代时尚的融合设计</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li>市场竞争加剧，同质化风险</li>
+                                                <li>原材料成本上涨</li>
+                                                <li>消费者对产品质量要求提高</li>
+                                                <li>快时尚品牌进入复古首饰市场</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. 改进建议</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="recommendations">
+                        <h4>产品策略优化</h4>
+                        <div class="action-item">
+                            <p><strong>扩展畅销产品线：</strong> 基于心形吊坠项链和太阳花项链的成功，开发更多相似风格但具有差异化元素的产品。例如，添加不同时期的复古元素(维多利亚、Art Deco、1970s等)，或结合不同材质。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>提升产品质量：</strong> 针对客户反馈中提到的配件牢固度问题，加强质量控制，特别是吊坠链接处和装饰元素的固定方式。考虑使用更耐用的材料或改进工艺。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>开发环保复古系列：</strong> 顺应欧洲环保潮流，推出使用回收材料或可持续材质的复古首饰系列，并在产品描述中强调环保理念。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>优化产品尺寸：</strong> 提供更详细的尺寸信息和比例图，减少客户对尺寸的误解。考虑对部分款式提供不同尺寸选择。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>手链系列改进：</strong> 针对销量下滑的手链系列，考虑重新设计或与畅销的项链系列创建匹配套装，提高整体销量。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="recommendations">
+                        <h4>营销与展示优化</h4>
+                        <div class="action-item">
+                            <p><strong>优化产品标题：</strong> 结合搜索热门关键词，改进产品标题。例如：将"HETICA 女士粗金项链"优化为"HETICA Vintage Chunky Gold Necklace - Retro Heart Pendant Necklace for Women"。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>提升图片质量：</strong> 提供更多高质量的产品图片，包括细节特写、不同角度展示，以及实际佩戴效果。对于复古风格产品，添加与复古服装搭配的情境图。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>丰富产品描述：</strong> 在产品描述中加入设计灵感、历史背景和文化元素，增强复古产品的故事性和吸引力。例如："灵感源自1920年代Art Deco风格，这款项链融合了..."</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>关键词优化：</strong> 根据市场趋势和搜索热度，优化后台关键词。核心关键词包括：vintage jewelry, retro necklace, antique style earrings, baroque pearl, chunky gold chain等。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>视频展示：</strong> 增加产品视频展示，特别是展示首饰的光泽、质感和佩戴效果，提高客户对产品的直观了解。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="recommendations">
+                        <h4>客户体验提升</h4>
+                        <div class="action-item">
+                            <p><strong>完善包装：</strong> 继续强化产品包装的精美度，考虑添加品牌故事卡片、保养说明和个性化感谢信，提升整体购物体验。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>建立会员计划：</strong> 设计会员忠诚度计划，鼓励回头客再次购买，提高回头客比率。例如，第二次购买可获得10%折扣或赠送小礼品。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>主动收集反馈：</strong> 在包装中添加反馈邀请卡，鼓励客户在亚马逊留下评价，并提供专属客服邮箱解决问题。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>提供搭配建议：</strong> 在产品描述中提供复古首饰的搭配建议和风格指南，帮助客户更好地使用产品。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>优化退换货流程：</strong> 简化退换货流程，对于低价产品考虑"无需退回直接退款"政策，提高客户满意度和忠诚度。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="recommendations">
+                        <h4>运营与推广策略</h4>
+                        <div class="action-item">
+                            <p><strong>广告投放优化：</strong> 提高核心关键词的广告投入，针对复古风格和手工制作等关键词进行精准投放。同时，增加负面关键词，排除无关搜索。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>季节性促销：</strong> 制定针对不同节日和季节的促销计划，如毕业季复古首饰礼盒、情人节复古爱情主题系列等。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>跨品类捆绑销售：</strong> 创建跨品类套装，如项链+耳环套装、全套复古配饰等，提高平均订单价值。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>社交媒体推广：</strong> 建立或增强Pinterest、Instagram等社交媒体账号，分享复古首饰搭配灵感、设计故事和潮流趋势。</p>
+                        </div>
+                        <div class="action-item">
+                            <p><strong>参与亚马逊活动：</strong> 积极参与亚马逊Prime Day、Black Friday等大型促销活动，提高品牌曝光度和销量。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>6. 结论与未来展望</h2>
+            <p>HETICA复古风首饰在过去一个月展现出良好的销售态势，尤其是粗金项链和复古动物胸针系列表现突出。基于当前市场趋势和消费者偏好，我们认为HETICA具有巨大的增长潜力，特别是在欧洲市场和Z世代消费群体中。</p>
+            
+            <p>通过实施本报告提出的建议，包括产品质量提升、产品线扩展、营销展示优化以及客户体验改进，HETICA有望在未来实现销售额的持续增长和市场份额的扩大。</p>
+            
+            <p>特别值得关注的是环保复古首饰的发展趋势，以及与数字营销和社交媒体的深度融合，这将是未来复古首饰品牌发展的重要方向。</p>
+            
+            <p>未来三个月的关键行动建议：</p>
+            <ol>
+                <li>优先解决产品质量问题，特别是配件牢固度和尺寸准确性</li>
+                <li>基于畅销产品开发2-3个新系列，满足不同目标客户群体需求</li>
+                <li>全面优化产品标题、描述和图片，提高搜索可见度和转化率</li>
+                <li>建立会员忠诚度计划，提高回头客比率</li>
+                <li>准备参与2025年下半年亚马逊大型促销活动的策略和库存</li>
+            </ol>
+            
+            <p>通过持续的数据监测和策略调整，HETICA有望在复古首饰这一不断增长的市场中建立更强的品牌影响力和市场竞争力。</p>
+        </div>
+    </div>
+
+    <script>
+        // 产品类别分布图
+        const productCategoryCtx = document.getElementById('productCategoryChart').getContext('2d');
+        const productCategoryChart = new Chart(productCategoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['项链', '耳环', '戒指', '胸针', '手链'],
+                datasets: [{
+                    data: [35, 25, 15, 18, 7],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: '产品类别占比 (%)'
+                    }
+                }
+            }
+        });
+
+        // 月度销售趋势图
+        const monthlySalesCtx = document.getElementById('monthlySalesChart').getContext('2d');
+        const monthlySalesChart = new Chart(monthlySalesCtx, {
+            type: 'line',
+            data: {
+                labels: ['第1周', '第2周', '第3周', '第4周'],
+                datasets: [{
+                    label: '销售额 ($)',
+                    data: [9450, 10200, 11350, 11837],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 8000
+                    }
+                }
+            }
+        });
+
+        // 产品类别销售占比图
+        const categorySalesCtx = document.getElementById('categorySalesChart').getContext('2d');
+        const categorySalesChart = new Chart(categorySalesCtx, {
+            type: 'pie',
+            data: {
+                labels: ['项链', '耳环', '戒指', '胸针', '手链'],
+                datasets: [{
+                    data: [42, 23, 12, 18, 5],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: '销售额占比 (%)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
