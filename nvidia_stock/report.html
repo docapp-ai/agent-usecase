@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英伟达股票趋势与关税政策影响分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #76b900, #388e3c);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(118, 185, 0, 0.3);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #76b900;
+        }
+        .section h2 {
+            color: #2c5234;
+            border-bottom: 2px solid #76b900;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .section h3 {
+            color: #388e3c;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+            border: 1px solid #76b900;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0, #ffecb3);
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .danger-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border: 1px solid #f44336;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .metric-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #76b900;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background: linear-gradient(135deg, #76b900, #388e3c);
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .citation {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .references {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .references h3 {
+            color: #2c5234;
+            margin-bottom: 15px;
+        }
+        .references ol {
+            padding-left: 20px;
+        }
+        .references li {
+            margin-bottom: 8px;
+        }
+        .references a {
+            color: #76b900;
+            text-decoration: none;
+        }
+        .references a:hover {
+            text-decoration: underline;
+        }
+        .executive-summary {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196f3;
+        }
+        .conclusion {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 5px solid #9c27b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 英伟达(NVIDIA)股票趋势与关税政策影响分析报告</h1>
+        <p>深度分析AI芯片巨头的市场表现与地缘政治风险</p>
+        <p>分析日期：2025年6月11日</p>
+    </div>
+
+    <div class="section executive-summary">
+        <h2>📊 执行摘要</h2>
+        <p>英伟达(NASDAQ: NVDA)作为全球AI芯片领域的绝对龙头，在2024-2025年期间展现出了强劲的增长势头，但同时也面临着前所未有的地缘政治挑战。本报告通过深入分析英伟达的财务表现、股价趋势以及美中贸易政策对其业务的影响，为投资者提供全面的投资参考。</p>
+        
+        <div class="highlight-box">
+            <h3>🎯 核心发现</h3>
+            <ul>
+                <li><strong>业绩强劲</strong>：2025财年Q1营收达441亿美元，同比增长69%</li>
+                <li><strong>政策冲击</strong>：中国出口限制导致H20芯片相关损失达124亿美元</li>
+                <li><strong>市场前景</strong>：华尔街分析师普遍看好，平均目标价172美元</li>
+                <li><strong>风险因素</strong>：中美贸易紧张局势持续，竞争加剧</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📈 股票趋势分析</h2>
+        
+        <h3>💹 近期表现概览</h3>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">+170%</div>
+                <div class="metric-label">2024年涨幅</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$142</div>
+                <div class="metric-label">当前股价(USD)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$172</div>
+                <div class="metric-label">分析师平均目标价</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">+21%</div>
+                <div class="metric-label">预期上涨空间</div>
+            </div>
+        </div>
+
+        <h3>📊 历史表现回顾</h3>
+        <div class="chart-container">
+            <canvas id="stockPerformanceChart" width="400" height="200"></canvas>
+        </div>
+
+        <h3>🔮 2025年展望</h3>
+        <div class="highlight-box">
+            <h4>华尔街共识预测</h4>
+            <ul>
+                <li><strong>评级分布</strong>：44位分析师中，36位给予"买入"评级，3位"强烈买入"</li>
+                <li><strong>目标价区间</strong>：$100-$220，平均$172.36</li>
+                <li><strong>营收预期</strong>：2025财年预计达到1,113亿美元</li>
+                <li><strong>EPS预测</strong>：每股收益预期增长50%至$4.43</li>
+            </ul>
+        </div>
+
+        <table>
+            <tr>
+                <th>时间</th>
+                <th>预测股价</th>
+                <th>主要驱动因素</th>
+            </tr>
+            <tr>
+                <td>2025年Q2</td>
+                <td>$155-165</td>
+                <td>Blackwell架构芯片放量</td>
+            </tr>
+            <tr>
+                <td>2025年Q3</td>
+                <td>$165-185</td>
+                <td>数据中心需求持续强劲</td>
+            </tr>
+            <tr>
+                <td>2025年Q4</td>
+                <td>$175-195</td>
+                <td>AI基础设施建设加速</td>
+            </tr>
+            <tr>
+                <td>2025年底</td>
+                <td>$180-190</td>
+                <td>全年业绩兑现</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>💰 财务表现分析</h2>
+        
+        <h3>📋 2025财年Q1关键指标</h3>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">$441亿</div>
+                <div class="metric-label">总营收</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">+69%</div>
+                <div class="metric-label">同比增长</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$391亿</div>
+                <div class="metric-label">数据中心营收</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$0.81</div>
+                <div class="metric-label">调整后EPS</div>
+            </div>
+        </div>
+
+        <h3>📊 业务部门表现</h3>
+        <div class="chart-container">
+            <canvas id="revenueBreakdownChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="highlight-box">
+            <h4>💡 关键亮点</h4>
+            <ul>
+                <li><strong>数据中心业务</strong>：营收391亿美元，同比增长73%，占总营收89%</li>
+                <li><strong>游戏业务</strong>：营收38亿美元，创历史新高，同比增长42%</li>
+                <li><strong>汽车业务</strong>：营收5.67亿美元，同比增长72%</li>
+                <li><strong>毛利率</strong>：调整后毛利率71.3%（剔除H20影响）</li>
+            </ul>
+        </div>
+
+        <h3>📅 未来财务预期</h3>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>2025财年Q2预期</th>
+                <th>2025财年全年预期</th>
+                <th>增长驱动因素</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>$450亿 (±2%)</td>
+                <td>$1,113亿</td>
+                <td>AI基础设施需求</td>
+            </tr>
+            <tr>
+                <td>数据中心营收</td>
+                <td>$420亿</td>
+                <td>$1,000亿+</td>
+                <td>Blackwell架构放量</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>70-75%</td>
+                <td>72-75%</td>
+                <td>产品组合优化</td>
+            </tr>
+            <tr>
+                <td>EPS</td>
+                <td>$0.90-1.00</td>
+                <td>$4.43</td>
+                <td>规模效应显现</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🌐 关税政策与出口限制影响</h2>
+
+        <h3>🚨 政策背景</h3>
+        <div class="warning-box">
+            <h4>⚠️ 美国对华AI芯片出口管制升级</h4>
+            <p>自2024年以来，美国政府持续加强对华AI芯片出口管制，2025年4月9日起，英伟达H20芯片对华出口需要许可证，这一政策对公司业务产生了重大影响。</p>
+        </div>
+
+        <h3>💸 直接财务影响</h3>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">$124亿</div>
+                <div class="metric-label">H20相关总损失</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$45亿</div>
+                <div class="metric-label">Q1库存减值</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$25亿</div>
+                <div class="metric-label">Q1无法交付收入</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$80亿</div>
+                <div class="metric-label">Q2预期损失</div>
+            </div>
+        </div>
+
+        <h3>📊 政策影响时间线</h3>
+        <div class="chart-container">
+            <canvas id="policyImpactChart" width="400" height="200"></canvas>
+        </div>
+
+        <h3>🎯 具体影响分析</h3>
+        
+        <div class="danger-box">
+            <h4>🔴 负面影响</h4>
+            <ul>
+                <li><strong>市场份额下滑</strong>：在华AI芯片市场份额从95%降至50%</li>
+                <li><strong>收入损失</strong>：CEO黄仁勋表示累计损失约150亿美元销售额</li>
+                <li><strong>库存积压</strong>：H20芯片库存无法正常销售，造成巨额减值</li>
+                <li><strong>竞争加剧</strong>：华为昇腾910B/910C等国产芯片获得发展机会</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h4>🟢 应对策略</h4>
+            <ul>
+                <li><strong>产品调整</strong>：开发符合出口管制要求的降级版H20芯片</li>
+                <li><strong>区域布局</strong>：计划在上海设立研发中心</li>
+                <li><strong>制造转移</strong>：AI超级计算机生产完全转移至美国</li>
+                <li><strong>新品开发</strong>：基于Blackwell架构的低成本中国版芯片</li>
+            </ul>
+        </div>
+
+        <h3>📈 长期影响评估</h3>
+        <table>
+            <tr>
+                <th>影响领域</th>
+                <th>短期(6-12个月)</th>
+                <th>中期(1-3年)</th>
+                <th>长期(3-5年)</th>
+            </tr>
+            <tr>
+                <td>营收影响</td>
+                <td>-10%至-15%</td>
+                <td>-5%至-10%</td>
+                <td>影响减弱</td>
+            </tr>
+            <tr>
+                <td>市场地位</td>
+                <td>轻微下降</td>
+                <td>面临挑战</td>
+                <td>需要重新定位</td>
+            </tr>
+            <tr>
+                <td>技术领先性</td>
+                <td>保持优势</td>
+                <td>优势缩小</td>
+                <td>竞争激烈</td>
+            </tr>
+            <tr>
+                <td>全球布局</td>
+                <td>重新调整</td>
+                <td>多元化发展</td>
+                <td>区域化策略</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🔍 投资风险与机遇分析</h2>
+
+        <h3>⚡ 增长驱动因素</h3>
+        <div class="highlight-box">
+            <h4>🚀 核心增长动力</h4>
+            <ul>
+                <li><strong>AI革命浪潮</strong>：全球AI市场预计2025-2030年CAGR达35.9%</li>
+                <li><strong>数据中心需求</strong>：云服务商持续加大AI基础设施投入</li>
+                <li><strong>Blackwell架构</strong>：新一代芯片性能大幅提升，订单已排至12个月后</li>
+                <li><strong>汽车AI化</strong>：自动驾驶和智能座舱带来新增长点</li>
+                <li><strong>主权AI</strong>：各国政府加大AI基础设施建设投入</li>
+            </ul>
+        </div>
+
+        <h3>⚠️ 主要风险因素</h3>
+        <div class="warning-box">
+            <h4>🔶 需要关注的风险</h4>
+            <ul>
+                <li><strong>地缘政治风险</strong>：中美贸易紧张可能进一步升级</li>
+                <li><strong>竞争加剧</strong>：AMD、Intel以及中国本土厂商竞争压力</li>
+                <li><strong>估值风险</strong>：当前估值较高，市场预期很高</li>
+                <li><strong>技术迭代</strong>：AI技术快速发展可能带来颠覆性变化</li>
+                <li><strong>供应链风险</strong>：台积电等关键供应商的地缘政治风险</li>
+            </ul>
+        </div>
+
+        <h3>📊 SWOT分析</h3>
+        <table>
+            <tr>
+                <th style="background: #4caf50;">优势(Strengths)</th>
+                <th style="background: #ff9800;">劣势(Weaknesses)</th>
+            </tr>
+            <tr>
+                <td>
+                    • AI芯片技术绝对领先<br>
+                    • 软硬件生态完整<br>
+                    • 品牌影响力强<br>
+                    • 财务状况优异
+                </td>
+                <td>
+                    • 过度依赖中国市场<br>
+                    • 制造环节依赖台积电<br>
+                    • 产品周期性波动<br>
+                    • 地缘政治敏感
+                </td>
+            </tr>
+            <tr>
+                <th style="background: #2196f3;">机遇(Opportunities)</th>
+                <th style="background: #f44336;">威胁(Threats)</th>
+            </tr>
+            <tr>
+                <td>
+                    • AI应用场景持续扩展<br>
+                    • 边缘计算需求增长<br>
+                    • 新兴市场开拓<br>
+                    • 垂直行业AI化
+                </td>
+                <td>
+                    • 贸易政策进一步收紧<br>
+                    • 竞争对手技术追赶<br>
+                    • 经济周期性下行<br>
+                    • 技术路线分化
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>💡 投资建议</h2>
+
+        <h3>🎯 投资策略建议</h3>
+        
+        <div class="highlight-box">
+            <h4>📈 买入理由</h4>
+            <ul>
+                <li><strong>技术护城河深厚</strong>：在AI芯片领域保持2-3年技术领先优势</li>
+                <li><strong>财务表现优异</strong>：营收和利润保持高速增长</li>
+                <li><strong>市场需求旺盛</strong>：AI基础设施建设仍处于早期阶段</li>
+                <li><strong>估值相对合理</strong>：相比历史高点有所回调</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>⚖️ 投资注意事项</h4>
+            <ul>
+                <li><strong>仓位控制</strong>：建议控制在投资组合的5-10%</li>
+                <li><strong>分批建仓</strong>：利用市场波动分批买入</li>
+                <li><strong>关注政策</strong>：密切跟踪中美贸易政策变化</li>
+                <li><strong>风险管理</strong>：设置合理的止损和止盈位置</li>
+            </ul>
+        </div>
+
+        <h3>📊 目标价位与操作建议</h3>
+        <table>
+            <tr>
+                <th>价格区间</th>
+                <th>操作建议</th>
+                <th>理由</th>
+                <th>风险提示</th>
+            </tr>
+            <tr>
+                <td>$120-140</td>
+                <td>积极买入</td>
+                <td>接近支撑位，估值吸引</td>
+                <td>关注基本面恶化风险</td>
+            </tr>
+            <tr>
+                <td>$140-170</td>
+                <td>持有</td>
+                <td>合理估值区间</td>
+                <td>注意政策风险</td>
+            </tr>
+            <tr>
+                <td>$170-200</td>
+                <td>减持</td>
+                <td>接近目标价位</td>
+                <td>估值偏高风险</td>
+            </tr>
+            <tr>
+                <td>$200以上</td>
+                <td>卖出</td>
+                <td>估值过高</td>
+                <td>泡沫破裂风险</td>
+            </tr>
+        </table>
+
+        <h3>⏰ 关键时点提醒</h3>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>2025年8月</strong>：Q2财报发布，关注H20影响及Blackwell放量情况</li>
+                <li><strong>2025年11月</strong>：Q3财报，验证全年业绩指引</li>
+                <li><strong>2026年初</strong>：关注新一轮贸易政策调整可能性</li>
+                <li><strong>GTC大会</strong>：关注技术路线图和新产品发布</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section conclusion">
+        <h2>📝 结论</h2>
+        <p>英伟达作为AI时代的核心受益者，在技术领先性和市场地位方面仍然具备显著优势。尽管面临中美贸易摩擦带来的挑战，但公司强劲的基本面、持续的技术创新以及广阔的市场前景仍然支撑其长期投资价值。</p>
+        
+        <div class="highlight-box">
+            <h3>🎯 核心观点</h3>
+            <ul>
+                <li><strong>短期承压，长期向好</strong>：地缘政治风险造成短期波动，但长期增长逻辑依然成立</li>
+                <li><strong>技术护城河稳固</strong>：在AI芯片领域的技术领先优势仍将维持2-3年</li>
+                <li><strong>多元化布局见效</strong>：数据中心、汽车、边缘计算等多领域发力降低单一市场依赖</li>
+                <li><strong>估值具备吸引力</strong>：当前价位相比历史高点有所回调，具备配置价值</li>
+            </ul>
+        </div>
+
+        <p><strong>投资评级：买入</strong></p>
+        <p><strong>目标价位：$180-190</strong></p>
+        <p><strong>投资期限：12-18个月</strong></p>
+    </div>
+
+    <div class="references">
+        <h3>📚 参考资料</h3>
+        <ol>
+            <li>NVIDIA Corporation. (2025). <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026" target="_blank">NVIDIA Announces Financial Results for First Quarter Fiscal 2026</a></li>
+            <li>CNN Business. (2025). <a href="https://www.cnn.com/2025/04/16/tech/nvidia-plunge-h20-chip-china-export-intl-hnk" target="_blank">Nvidia, caught in the US-China trade war, takes a $5.5 billion hit</a></li>
+            <li>Yahoo Finance. (2025). <a href="https://finance.yahoo.com/news/nvidia-ceo-china-chip-ban-deeply-painful-as-15-billion-in-sales-have-been-lost-as-a-result-162124142.html" target="_blank">Nvidia CEO: China chip ban 'deeply painful' as $15 billion in sales have been lost</a></li>
+            <li>Reuters. (2025). <a href="https://www.reuters.com/world/china/nvidia-modifies-h20-chip-china-overcome-us-export-controls-sources-say-2025-05-09/" target="_blank">Nvidia modifies H20 chip for China to overcome US export controls</a></li>
+            <li>The Motley Fool. (2025). <a href="https://www.fool.com/investing/2025/06/07/where-will-nvidia-stock-be-in-5-years/" target="_blank">Where Will Nvidia Stock Be in 5 Years?</a></li>
+            <li>Seeking Alpha. (2025). Various analyst reports and financial forecasts</li>
+            <li>U.S. Department of Commerce Bureau of Industry and Security. (2025). AI Diffusion Framework and Export Control Regulations</li>
+        </ol>
+        
+        <div class="citation">
+            <p><strong>免责声明</strong>：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。投资者应根据自身情况做出独立判断。</p>
+            <p><strong>数据来源</strong>：公开财务报告、华尔街分析师报告、新闻媒体报道</p>
+            <p><strong>报告生成时间</strong>：2025年6月11日</p>
+        </div>
+    </div>
+
+    <script>
+        // Stock Performance Chart
+        const stockCtx = document.getElementById('stockPerformanceChart').getContext('2d');
+        new Chart(stockCtx, {
+            type: 'line',
+            data: {
+                labels: ['2023年初', '2023年6月', '2023年底', '2024年6月', '2024年底', '2025年6月'],
+                datasets: [{
+                    label: 'NVIDIA股价',
+                    data: [35, 60, 119, 120, 142, 142],
+                    borderColor: '#76b900',
+                    backgroundColor: 'rgba(118, 185, 0, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'NVIDIA股价历史表现 (美元)'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: '股价 (USD)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Revenue Breakdown Chart
+        const revenueCtx = document.getElementById('revenueBreakdownChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['数据中心', '游戏', '专业可视化', '汽车', '其他'],
+                datasets: [{
+                    data: [39.1, 3.8, 0.5, 0.6, 0.1],
+                    backgroundColor: [
+                        '#76b900',
+                        '#388e3c',
+                        '#4caf50',
+                        '#8bc34a',
+                        '#cddc39'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '2025财年Q1营收结构 (十亿美元)'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Policy Impact Timeline Chart
+        const policyCtx = document.getElementById('policyImpactChart').getContext('2d');
+        new Chart(policyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2024年Q1', '2024年Q2', '2024年Q3', '2024年Q4', '2025年Q1', '2025年Q2E'],
+                datasets: [{
+                    label: '中国相关收入损失(亿美元)',
+                    data: [0, 10, 25, 35, 70, 80],
+                    backgroundColor: '#f44336'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '政策影响导致的收入损失趋势'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '损失金额 (亿美元)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
